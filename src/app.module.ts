@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
-import { User } from './user/entities/user.entity';
+import { UserEntity } from './user/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({
+  imports: [
+    ConfigModule.forRoot({
     envFilePath: ['.env.local', '.env'],
     isGlobal: true,
 }),
@@ -18,9 +20,10 @@ TypeOrmModule.forRoot({
   database: "EG-App",
   synchronize: true,
   autoLoadEntities: true,
-  entities: [User]
+  entities: [UserEntity]
 }),
 UserModule,
+AuthModule,
 ],
   controllers: [AppController],
   providers: [AppService],

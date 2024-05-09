@@ -1,11 +1,11 @@
-import {  Column, Entity, ObjectId, ObjectIdColumn, PrimaryColumn} from 'typeorm';
+import {  Column, CreateDateColumn, Entity, ObjectId, ObjectIdColumn} from 'typeorm';
 
-@Entity() 
-export class User {
+@Entity({ name: 'user' }) 
+export class UserEntity {
     @ObjectIdColumn()
     id: ObjectId;
 
-@Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -13,4 +13,7 @@ export class User {
 
   @Column()
   name: string;
+
+  @CreateDateColumn({name:'created_at'})
+  createdAt: Date;
 }
