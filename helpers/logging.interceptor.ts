@@ -9,9 +9,7 @@ export class LoggingInterceptor implements NestInterceptor {
         private readonly loggerService: LoggerService,
     ) {}
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    console.log('Before...');
     const request: Request = context.switchToHttp().getRequest();
-    const response: Request = context.switchToHttp().getResponse();
     return next
       .handle()
       .pipe(
