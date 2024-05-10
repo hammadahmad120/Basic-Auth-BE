@@ -14,13 +14,11 @@ export class LoggingInterceptor implements NestInterceptor {
       .handle()
       .pipe(
         tap((data) => {
-            this.loggerService.log('info', `url: ${request.url} ${request["user"]?.email ? ` -- user:${request["user"]?.email}`:'' } -- Response`)
-            this.loggerService.log('info', '%o', data);
+            this.loggerService.log('info', `url: ${request.url} ${request["user"]?.email ? ` -- user:${request["user"]?.email}`:'' } -- Response:   %o`, data);
         }),
       ).pipe(
         catchError(err => {
-            this.loggerService.log('error', `url: ${request.url} ${request["user"]?.email ? ` -- user: ${request["user"]?.email}`:'' } -- Error Response`)
-            this.loggerService.log('error', '%o', err.response);
+            this.loggerService.log('error', `url: ${request.url} ${request["user"]?.email ? ` -- user: ${request["user"]?.email}`:'' }  -- Error Response:  %o`, err.response);
             throw err
         }),
       );
