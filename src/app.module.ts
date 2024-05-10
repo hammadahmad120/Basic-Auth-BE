@@ -4,6 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { UserEntity } from './user/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
+import { LoggerModule } from './logger/logger.module';
+import { WinstonModule } from 'nest-winston';
+import { WinstonConfigFactory } from './logger/winston-config.factory';
 
 @Module({
   imports: [
@@ -23,8 +26,14 @@ import { AuthModule } from './auth/auth.module';
       }),
       inject: [ConfigService],
     }),
+    WinstonModule.forRootAsync({
+      imports: [ ConfigModule ],
+      useFactory: WinstonConfigFactory,
+      inject: [ConfigService],
+  }),
     UserModule,
     AuthModule,
+    LoggerModule
   ],
 })
 export class AppModule {}
