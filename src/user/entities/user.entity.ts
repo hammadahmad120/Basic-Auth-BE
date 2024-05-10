@@ -1,9 +1,15 @@
-import {  Column, CreateDateColumn, Entity, ObjectId, ObjectIdColumn} from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ObjectId,
+  ObjectIdColumn,
+} from 'typeorm';
 
-@Entity({ name: 'user' }) 
+@Entity({ name: 'user' })
 export class UserEntity {
-    @ObjectIdColumn()
-    id: ObjectId;
+  @ObjectIdColumn()
+  id: ObjectId;
 
   @Column({ unique: true })
   email: string;
@@ -14,6 +20,6 @@ export class UserEntity {
   @Column()
   name: string;
 
-  @CreateDateColumn({name:'created_at'})
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 }

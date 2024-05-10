@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post, UseGuards, Request } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInRequest } from './dto/signInRequest.dto';
 import { SignInResponse } from './dto/signInResponse.dto';
@@ -22,7 +29,7 @@ export class AuthController {
 
   @UseGuards(AuthGuard)
   @Get('user')
-  async getLoggedInUser(@Request() req):Promise<User> {
+  async getLoggedInUser(@Request() req): Promise<User> {
     return await this.authService.getLoggedInUser(req.user.email);
   }
 }

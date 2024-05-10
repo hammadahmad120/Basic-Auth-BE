@@ -9,36 +9,39 @@ import { registerRequest } from './dto/registerRequest.dto';
 @Injectable()
 export class AuthService {
   private errorCodes = {
-    invalidEmailOrPassword:"INVALID_EMAIL_OR_PASSWORD"
+    invalidEmailOrPassword: 'INVALID_EMAIL_OR_PASSWORD',
+  };
+
+  constructor(
+    private configService: ConfigService,
+    private usersService: UserService,
+    private jwtService: JwtService,
+  ) {}
+
+  async signIn(email: string, pass: string): Promise<SignInResponse> {
+    const user = await this.usersService.authenticateUser(email, pass);
+    if (!user) {
+      throw new UnauthorizedException(
+        'Invalid email or password',
+        this.errorCodes.invalidEmailOrPassword,
+      );
+    }
+    const { id, ...result } = user;
+    const payload = { sub: id, email: result.email };
+    const accessToken = await this.jwtService.signAsync(payload);
+
+    return {
+      userId: id,
+      ...result,
+      accessToken,
+    };
   }
 
-    constructor(
-        private configService: ConfigService,
-        private usersService: UserService,
-        private jwtService: JwtService
-        ) {}
+  async registerUser(registerDto: registerRequest): Promise<User> {
+    return await this.usersService.createUser(registerDto);
+  }
 
-    async signIn(email: string, pass: string): Promise<SignInResponse> {
-        const user = await this.usersService.authenticateUser(email, pass);
-        if (!user) {
-          throw new UnauthorizedException("Invalid email or password", this.errorCodes.invalidEmailOrPassword);
-        }
-        const { id, ...result } = user;
-        const payload = { sub: id, email: result.email };
-        const accessToken = await this.jwtService.signAsync(payload);
-
-        return {
-            userId: id,
-            ...result,
-            accessToken
-        };
-      }
-
-      async registerUser(registerDto: registerRequest): Promise<User> {
-        return await this.usersService.createUser(registerDto)
-      }
-
-      async getLoggedInUser(email: string):Promise<User>{
-        return await this.usersService.getUserByEmail(email)
-      }
+  async getLoggedInUser(email: string): Promise<User> {
+    return await this.usersService.getUserByEmail(email);
+  }
 }
