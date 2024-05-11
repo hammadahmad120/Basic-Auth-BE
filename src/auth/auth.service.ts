@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
 import { SignInResponse } from './dto/signInResponse.dto';
@@ -21,7 +21,7 @@ export class AuthService {
   async signIn(email: string, pass: string): Promise<SignInResponse> {
     const user = await this.usersService.authenticateUser(email, pass);
     if (!user) {
-      throw new UnauthorizedException(
+      throw new BadRequestException(
         'Invalid email or password',
         this.errorCodes.invalidEmailOrPassword,
       );
