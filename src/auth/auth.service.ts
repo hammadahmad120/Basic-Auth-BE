@@ -26,12 +26,12 @@ export class AuthService {
         this.errorCodes.invalidEmailOrPassword,
       );
     }
-    const { id, ...result } = user;
-    const payload = { sub: id, email: result.email };
+    const { userId, ...result } = user;
+    const payload = { sub: userId, email: result.email };
     const accessToken = await this.jwtService.signAsync(payload);
 
     return {
-      userId: id,
+      userId,
       ...result,
       accessToken,
     };
@@ -39,12 +39,12 @@ export class AuthService {
 
   async registerUser(registerDto: registerRequest): Promise<SignInResponse> {
     const registeredUser =  await this.usersService.createUser(registerDto);
-    const { id, ...result } = registeredUser;
-    const payload = { sub: id, email: result.email };
+    const { userId, ...result } = registeredUser;
+    const payload = { sub: userId, email: result.email };
     const accessToken = await this.jwtService.signAsync(payload);
 
     return {
-      userId: id,
+      userId,
       ...result,
       accessToken,
     };

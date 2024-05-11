@@ -62,7 +62,7 @@ export class UserService {
 
   private convertUserEntityToDto(userEntity: UserEntity) {
     const user = new User();
-    user.id = userEntity.id.toString();
+    user.userId = userEntity.id.toString();
     user.email = userEntity.email;
     user.name = userEntity.name;
     return user;
