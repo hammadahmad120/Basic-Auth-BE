@@ -26,7 +26,7 @@ export class AuthController {
   }
 
   @Post('register')
-  async registerUser(@Body() registerDto: registerRequest): Promise<User> {
+  async registerUser(@Body() registerDto: registerRequest): Promise<SignInResponse> {
     return await this.authService.registerUser(registerDto);
   }
 

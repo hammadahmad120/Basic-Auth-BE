@@ -37,8 +37,18 @@ export class AuthService {
     };
   }
 
-  async registerUser(registerDto: registerRequest): Promise<User> {
-    return await this.usersService.createUser(registerDto);
+  async registerUser(registerDto: registerRequest): Promise<SignInResponse> {
+    const registeredUser =  await this.usersService.createUser(registerDto);
+    const { id, ...result } = registeredUser;
+    const payload = { sub: id, email: result.email };
+    const accessToken = await this.jwtService.signAsync(payload);
+
+    return {
+      userId: id,
+      ...result,
+      accessToken,
+    };
+
   }
 
   async getLoggedInUser(email: string): Promise<User> {
