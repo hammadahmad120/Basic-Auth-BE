@@ -24,10 +24,30 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Test application in nest js containing following endpoints:
+
+- POST on the endpoint /auth/login (To sign in user)
+- POST on the endpoint /auth/register (To sign up user )
+- GET on the endpoint /auth/user (Protected endpoint(required token in header) to get logged in user details)
+## Note
+ accessToken returned from login/register endpoints need to be passed as Bearer Token in authorization header for that Get user endpoint
+
+## Major dependencies
+- mongodb (NoSql database for storing user data)
+- typeorm (ORM to communicate with db)
+- winston (For logging)
+- jwt (For authentication)
+- class validator (for validating requests)
+- bcrypt (for encryting passwords)
 
 ## Installation
+- You need to have mongodb installed and running
+- At same level of .env.example create .env.local file and copy .env.example content in it
+- Used mongo db credentials without username and password for simplicity, you can update those credentials based on your need
 
+- Install @nestjs/cli globally if required by running following command npm i -g @nestjs/cli (Optional Requirement)
+
+Run following command to install all dependencies
 ```bash
 $ npm install
 ```
@@ -41,32 +61,7 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
-# production mode
-$ npm run start:prod
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
