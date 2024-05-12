@@ -26,8 +26,19 @@
 
 Test application in nest js containing following endpoints:
 
-- POST on the endpoint /auth/login (To sign in user)
+- POST on the endpoint /auth/login (To sign in user) 
+Request body for login:
+{
+    email
+    password
+}
 - POST on the endpoint /auth/register (To sign up user )
+Request body for signup:
+{
+    email
+    password
+    name
+}
 - GET on the endpoint /auth/user (Protected endpoint(required token in header) to get logged in user details)
 ## Note
  accessToken returned from login/register endpoints need to be passed as Bearer Token in authorization header for that Get user endpoint
