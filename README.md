@@ -56,7 +56,7 @@ Request body for signup:
 ## Installation
 - You need to have mongodb installed and running
 - At same level of .env.example create .env.local file and copy .env.example content in it
-- -> NOTE <- if you want to verify captcha for sign in and sign up endpoints, uncomment RECAPTCHA_SECRET_KEY in your .env.local file and place your google secret key, by default it commented in .env.local file so captcha will not be verified by backend services and is disabled
+- -> NOTE <- if you want to verify captcha for sign in and sign up endpoints, uncomment RECAPTCHA_SECRET_KEY in your .env.local file and place your google reCaptcha secret key, by default it commented in .env.local file so captcha will not be verified by backend services and is disabled
 
 NOTE: Used mongo db credentials without username and password for simplicity, you can update those credentials based on your mongodb setup
 
