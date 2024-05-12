@@ -13,4 +13,6 @@ export class registerRequest {
 
   @IsNotEmpty()
   name: string;
+
+  recaptchaToken: string;
 }

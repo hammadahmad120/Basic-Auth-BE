@@ -7,4 +7,6 @@ export class SignInRequest {
 
   @IsNotEmpty()
   password: string;
+
+  recaptchaToken: string;
 }

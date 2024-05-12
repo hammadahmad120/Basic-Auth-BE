@@ -22,7 +22,7 @@ export class AuthController {
 
   @Post('login')
   async signIn(@Body() signInDto: SignInRequest): Promise<SignInResponse> {
-    return await this.authService.signIn(signInDto.email, signInDto.password);
+    return await this.authService.signIn(signInDto.email, signInDto.password, signInDto.recaptchaToken);
   }
 
   @Post('register')
