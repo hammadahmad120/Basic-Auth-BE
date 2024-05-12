@@ -1,5 +1,3 @@
-// Copyright 2019-2022 Afiniti, Inc.
-
 import { Inject, Injectable } from '@nestjs/common';
 import { Logger } from 'winston';
 import { ConfigService } from '@nestjs/config';

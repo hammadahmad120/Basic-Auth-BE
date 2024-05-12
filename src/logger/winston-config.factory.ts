@@ -1,5 +1,3 @@
-// Copyright 2019-2022 Afiniti, Inc.
-
 import { ConfigService } from '@nestjs/config';
 import { transports as winstonTransports, format } from 'winston';
 import 'winston-daily-rotate-file'; 
