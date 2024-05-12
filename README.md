@@ -43,9 +43,9 @@ Test application in nest js containing following endpoints:
 ## Installation
 - You need to have mongodb installed and running
 - At same level of .env.example create .env.local file and copy .env.example content in it
-- Used mongo db credentials without username and password for simplicity, you can update those credentials based on your need
+NOTE: Used mongo db credentials without username and password for simplicity, you can update those credentials based on your need
 
-- Install @nestjs/cli globally if required by running following command npm i -g @nestjs/cli (Optional Requirement)
+OPTIONAL: Install @nestjs/cli globally if required by running following command npm i -g @nestjs/cli
 
 Run following command to install all dependencies
 ```bash
